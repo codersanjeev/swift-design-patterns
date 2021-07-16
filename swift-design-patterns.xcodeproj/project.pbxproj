@@ -6,6 +6,10 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDBB26A224A1006CA576 /* SRP.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		AF4A40D7269F100B00124CC3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -20,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		AF4A40D9269F100B00124CC3 /* swift-design-patterns */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-design-patterns"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF55DDBB26A224A1006CA576 /* SRP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +57,17 @@
 		AF4A40DB269F100B00124CC3 /* swift-design-patterns */ = {
 			isa = PBXGroup;
 			children = (
+				AF55DDBA26A2248B006CA576 /* solid */,
 			);
 			path = "swift-design-patterns";
+			sourceTree = "<group>";
+		};
+		AF55DDBA26A2248B006CA576 /* solid */ = {
+			isa = PBXGroup;
+			children = (
+				AF55DDBB26A224A1006CA576 /* SRP.swift */,
+			);
+			path = solid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +101,7 @@
 				TargetAttributes = {
 					AF4A40D8269F100B00124CC3 = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -113,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,12 +253,19 @@
 		AF4A40E1269F100B00124CC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D68YD3CF7Q;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -250,10 +273,16 @@
 		AF4A40E2269F100B00124CC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D68YD3CF7Q;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
