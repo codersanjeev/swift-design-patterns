@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDBB26A224A1006CA576 /* SRP.swift */; };
+		AF55DDBE26A22A8E006CA576 /* OCP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDBD26A22A8E006CA576 /* OCP.swift */; };
+		AF55DDC026A4357C006CA576 /* LSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDBF26A4357C006CA576 /* LSP.swift */; };
+		AF55DDC226A49DD0006CA576 /* ISP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDC126A49DD0006CA576 /* ISP.swift */; };
+		AF55DDC426A49F66006CA576 /* DIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDC326A49F66006CA576 /* DIP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		AF4A40D9269F100B00124CC3 /* swift-design-patterns */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-design-patterns"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF55DDBB26A224A1006CA576 /* SRP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRP.swift; sourceTree = "<group>"; };
+		AF55DDBD26A22A8E006CA576 /* OCP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCP.swift; sourceTree = "<group>"; };
+		AF55DDBF26A4357C006CA576 /* LSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSP.swift; sourceTree = "<group>"; };
+		AF55DDC126A49DD0006CA576 /* ISP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISP.swift; sourceTree = "<group>"; };
+		AF55DDC326A49F66006CA576 /* DIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,10 @@
 			isa = PBXGroup;
 			children = (
 				AF55DDBB26A224A1006CA576 /* SRP.swift */,
+				AF55DDBD26A22A8E006CA576 /* OCP.swift */,
+				AF55DDBF26A4357C006CA576 /* LSP.swift */,
+				AF55DDC126A49DD0006CA576 /* ISP.swift */,
+				AF55DDC326A49F66006CA576 /* DIP.swift */,
 			);
 			path = solid;
 			sourceTree = "<group>";
@@ -128,7 +140,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF55DDC226A49DD0006CA576 /* ISP.swift in Sources */,
+				AF55DDC026A4357C006CA576 /* LSP.swift in Sources */,
+				AF55DDBE26A22A8E006CA576 /* OCP.swift in Sources */,
 				AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */,
+				AF55DDC426A49F66006CA576 /* DIP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
