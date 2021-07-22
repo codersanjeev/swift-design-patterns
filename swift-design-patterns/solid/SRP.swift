@@ -10,15 +10,15 @@ import Foundation
 // MARK:- Wrong Approach
 class Book {
 	private var pages = [String]()
-	
+
 	func addPage(_ page: String) {
 		pages.append(page)
 	}
-	
+
 	func removePage(_ page: String) {
 		pages = pages.filter { $0 != page }
 	}
-	
+
 	func printBook() {
 		// logic to print the hard copy of Book here
 	}
@@ -31,7 +31,7 @@ class Book {
 	func addPage(_ page: String) {
 		pages.append(page)
 	}
-	
+
 	func removePage(_ page: String) {
 		pages = pages.filter { $0 != page }
 	}

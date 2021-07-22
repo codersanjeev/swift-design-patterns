@@ -7,71 +7,43 @@
 
 import Foundation
 
-class Rectangle : CustomStringConvertible {
+// LSP
+class Rectangle {
+	var height: Int
+	var width: Int
 	
-	internal var _height: Int = 0
-	internal var _width: Int = 0
-	
-	var height: Int {
-		get {
-			return _height
-		}
-		set(value) {
-			_height = value
-		}
-	}
-	
-	var width: Int {
-		get {
-			return _width
-		}
-		set(value) {
-			_width = value
-		}
-	}
-	
-	init(_ height: Int, _ width: Int) {
+	init(height: Int, width: Int) {
 		self.height = height
 		self.width = width
 	}
 	
-	public var description: String {
-		return "Width: \(width), Height: \(height)"
+	func area() -> Int {
+		return height * width
 	}
-	
 }
 
 // MARK:- Wrong Approach
-// A Square is also a rectangle, so extending Rectangle
-class Square : Rectangle {
+class Square: Rectangle {
 	override var height: Int {
-		get {
-			return _height
-		}
-		set(value) {
-			_height = value
-			_width = value
+		didSet {
+			super.width = height
 		}
 	}
 	
 	override var width: Int {
-		get {
-			return _width
-		}
-		set(value) {
-			_height = value
-			_width = value
+		didSet {
+			super.height = width
 		}
 	}
 }
 
-private func calculateArea(_ shape: Rectangle) -> Int {
-	return shape.height * shape.width
-}
+let square = Square(height: 10, width: 10)
+print(square.area())
+let rectangle: Rectangle = square
+rectangle.height = 20
+print(rectangle.width)
+rectangle.width = 10
+print(rectangle.area()) // prints 100
 
-//let rectangle = Rectangle(10, 5)
-//print("Rectangle has Area = \(calculateArea(rectangle)), Expected = 50")
-//
-//let square: Rectangle = Square(0, 0)
-//square.width = 4
-//print("Square has Area = \(calculateArea(square)), Expected = 16")
+// MARK:- Correct Approach
+

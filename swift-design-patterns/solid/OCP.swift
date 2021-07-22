@@ -7,107 +7,95 @@
 
 import Foundation
 
-enum RatingRange {
-	case poor
-	case average
-	case good
+enum AverageRating {
+	case greaterThanEqualToOne
+	case greaterThanEqualToTwo
+	case greaterThanEqualToThree
+	case greaterThanEqualToFour
 }
 
 enum PriceRange {
-	case low
-	case medium
-	case high
+	case lessThanFifty
+	case betweenFiftyAndHundred
+	case betweenHundredAndTwoHundred
+	case betweenTwoHundredAndFiveHundred
+	case greaterThanFiveHundred
 }
 
-enum BookType {
-	case paper
-	case ebook
+enum Discount {
+	case greaterThanTenPercent
+	case greaterThanTwentyFivePercent
+	case greaterThanThirtyFivePercent
+	case greaterThanFiftyPercent
 }
 
-private class Book {
-	var name: String
-	var author: String
-	var ratingRange: RatingRange
+class Book {
+	var pages: [String]
+	var averageRating: AverageRating
 	var priceRange: PriceRange
-	var bookType: BookType
+	var discount: Discount
 	
 	init(
-		_ name: String,
-		_ author: String,
-		_ ratingRange: RatingRange,
+		_ pages: [String],
+		_ averageRating: AverageRating,
 		_ priceRange: PriceRange,
-		_ bookType: BookType
+		_ discount: Discount
 	) {
-		self.name = name
-		self.author = author
-		self.ratingRange = ratingRange
+		self.pages = pages
+		self.averageRating = averageRating
 		self.priceRange = priceRange
-		self.bookType = bookType
+		self.discount = discount
 	}
 }
 
 // MARK:- Wrong Approach
-// class responsible for filtering Books based on
-// certain requirements.
-private class BookFilter {
-	// Get books of given ratings only.
-	func filterByRatings(_ books: [Book], _ rating: RatingRange) -> [Book] {
-		return books.filter {
-			$0.ratingRange == rating
-		}
-	}
-	
-	// Get book of given price range only
-	func filterByPrice(_ books: [Book], _ price: PriceRange) -> [Book] {
-		return books.filter {
-			$0.priceRange == price
-		}
-	}
-	
-	// Get book of given ratings and given price range.
-	func filterByPriceAndRatings(
+class BooksFilter {
+	func filterByRatings(
 		_ books: [Book],
-		_ rating: RatingRange,
+		_ rating: AverageRating
+	) -> [Book] {
+		return books.filter{ $0.averageRating == rating }
+	}
+	
+	// Added Filter By Price
+	func filterByPrice(
+		_ books: [Book],
 		_ price: PriceRange
 	) -> [Book] {
-		return books.filter {
-			$0.ratingRange == rating && $0.priceRange == price
-		}
+		return books.filter{ $0.priceRange == price }
 	}
-	
-	// Drawback: Everytime a new requirement comes, we need to modify
-	// existing well tested class, which is breaking OC principle.
 }
 
 // MARK:- Correct Approach
-// Specification Enterprice Pattern.
-protocol Specification {
+protocol Specifiable {
 	associatedtype T
 	func isSatisfied(_ item: T) -> Bool
 }
 
-protocol Filter {
+protocol Filterable {
 	associatedtype T
-	func filter<Spec : Specification>(_ items: [T], _ specification: Spec) -> [T]
-	where Spec.T == T
+	func filter<Specification:Specifiable>(
+		_ items: [T],
+		_ specifiction: Specification
+	) -> [T] where Specification.T == T
 }
 
-class RatingSpecification : Specification {
+class RatingsSpecification: Specifiable {
 	typealias T = Book
-	let rating: RatingRange
+	private let rating: AverageRating
 	
-	init(_ rating: RatingRange) {
+	init(_ rating: AverageRating) {
 		self.rating = rating
 	}
 	
 	func isSatisfied(_ item: Book) -> Bool {
-		return item.ratingRange == rating
+		return item.averageRating == rating
 	}
 }
 
-class PriceSpecification : Specification {
+class PriceFilterSpecification: Specifiable {
 	typealias T = Book
-	let price: PriceRange
+	private let price: PriceRange
 	
 	init(_ price: PriceRange) {
 		self.price = price
@@ -118,55 +106,47 @@ class PriceSpecification : Specification {
 	}
 }
 
-class AndSpecification<
+class ANDSpecification<
 	T,
-	SpecificationOne: Specification,
-	SpecificationTwo: Specification
-> : Specification where SpecificationOne.T == SpecificationTwo.T, T == SpecificationOne.T {
+	SpecificationA: Specifiable,
+	SpecificationB: Specifiable
+> : Specifiable where SpecificationA.T == SpecificationB.T, T == SpecificationA.T {
+	let specificationA: SpecificationA
+	let specificationB: SpecificationB
 	
-	let first: SpecificationOne
-	let second: SpecificationTwo
-	
-	init(_ first: SpecificationOne, _ second: SpecificationTwo) {
-		self.first = first
-		self.second = second
+	init(_ specificationA: SpecificationA, _ specificationB: SpecificationB) {
+		self.specificationA = specificationA
+		self.specificationB = specificationB
 	}
 	
 	func isSatisfied(_ item: T) -> Bool {
-		return first.isSatisfied(item) && second.isSatisfied(item)
+		return specificationA.isSatisfied(item) && specificationB.isSatisfied(item)
 	}
-	
 }
 
-class BookFilterCorrected: Filter {
+class BooksFilter: Filterable {
 	typealias T = Book
 	
-	func filter<Spec: Specification>(_ items: [Book], _ specification: Spec) -> [Book] where Spec.T == T {
-		return items.filter {
-			specification.isSatisfied($0)
-		}
+	func filter<Specification>(
+		_ items: [Book],
+		_ specifiction: Specification
+	) -> [Book] where Specification : Specifiable, Book == Specification.T {
+		return items.filter{ specifiction.isSatisfied($0) }
 	}
-	
 }
 
-// MARK:- Usage
-//let bookOne = Book("Book One", "Book One Author", .good, .medium, .paper)
-//let bookTwo = Book("Book Two", "Book Two Author", .poor, .low, .ebook)
-//let bookThree = Book("Book Three", "Book Three Author", .average, .high, .ebook)
-//
-//let books = [bookOne, bookTwo, bookThree]
-//
-//let booksFilter = BookFilter()
-//let highRatedBooks = booksFilter.filterByRatings(books, .good)
-//for book in highRatedBooks {
-//	println(book)
-//}
-//let bookFilterCorrected = BookFilterCorrected()
-//let highRatedBooks = bookFilterCorrected.filter(books, RatingSpecification(.good))
-//for book in highRatedBooks {
-//	println(book)
-//}
-//let highRatedAndMediumCostBooks = bookFilterCorrected.filter(books, AndSpecification(RatingSpecification(.good), PriceSpecification(.medium)))
-//for book in highRatedAndMediumCostBooks {
-//	print(book)
-//}
+let books = [Book]()
+let booksFilter = BooksFilter()
+
+// we want books rated >= 4, so creating this specification.
+let ratingsSpecification = RatingsSpecification(.greaterThanEqualToFour)
+
+let ratedBooks = booksFilter.filter(books, ratingsSpecification)
+print(ratedBooks)
+
+let priceSpecification = PriceFilterSpecification(.betweenHundredAndTwoHundred)
+let cheapBooks = booksFilter.filter(books, priceSpecification)
+
+let ratingAndPriceSpecification = ANDSpecification(ratingsSpecification, priceSpecification)
+let cheapAndHighRatedBooks = booksFilter.filter(ratedBooks, ratingAndPriceSpecification)
+

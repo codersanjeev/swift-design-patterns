@@ -7,40 +7,47 @@
 
 import Foundation
 
-class Document {}
-
 // MARK:- Wrong Approach
-protocol Machine {
-	func print(_ document: Document)
-	func scan(_ document: Document)
-	func fax(_ document: Document)
+protocol Payable {
+	func payUsingCash()
+	func payUsingDebitCard()
+	func payUsingUpi()
 }
 
-// This class is enforced to implement the functionalities,
-// even though it might not need it.
-class ConcretePrinter : Machine {
-	func print(_ document: Document) {
-		
+class PaymentProcessor: Payable {
+	func payUsingCash() {
+		// logic to pay using cash
 	}
 	
-	func scan(_ document: Document) {
-		
+	func payUsingDebitCard() {
+		// logic to pay using debit card
 	}
 	
-	func fax(_ document: Document) {
-		
+	func payUsingUpi() {
+		print("we Don't support UPI yet.")
+		// or maybe throw an Error
 	}
 }
 
-// MARK:- Correct Approach: Segregate Interfaces/Protocols
-protocol Printer {
-	func print(_ document: Document)
+// MARK:- Correct Approach
+protocol CashPayable {
+	func payUsingCash()
 }
 
-protocol Scanner {
-	func scan(_ document: Document)
+protocol DebitCardPayable {
+	func payUsingDebitCard()
 }
 
-protocol Faxer {
-	func fax(_ document: Document)
+protocol UPIPayable {
+	func payUsingUpi()
+}
+
+class PaymentProcessor: CashPayable, DebitCardPayable {
+	func payUsingCash() {
+		// logic to pay using cash
+	}
+	
+	func payUsingDebitCard() {
+		// logic to pay using debit card
+	}
 }
