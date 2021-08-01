@@ -12,6 +12,9 @@
 		AF55DDC026A4357C006CA576 /* LSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDBF26A4357C006CA576 /* LSP.swift */; };
 		AF55DDC226A49DD0006CA576 /* ISP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDC126A49DD0006CA576 /* ISP.swift */; };
 		AF55DDC426A49F66006CA576 /* DIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55DDC326A49F66006CA576 /* DIP.swift */; };
+		AF55EED926ACF37100327A02 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EED826ACF37100327A02 /* Builder.swift */; };
+		AF55EEDC26ACFBF100327A02 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EEDB26ACFBF100327A02 /* Factory.swift */; };
+		AF55EEDF26AD03D100327A02 /* Prototype.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EEDE26AD03D100327A02 /* Prototype.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +36,9 @@
 		AF55DDBF26A4357C006CA576 /* LSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSP.swift; sourceTree = "<group>"; };
 		AF55DDC126A49DD0006CA576 /* ISP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISP.swift; sourceTree = "<group>"; };
 		AF55DDC326A49F66006CA576 /* DIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIP.swift; sourceTree = "<group>"; };
+		AF55EED826ACF37100327A02 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		AF55EEDB26ACFBF100327A02 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		AF55EEDE26AD03D100327A02 /* Prototype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prototype.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 		AF4A40DB269F100B00124CC3 /* swift-design-patterns */ = {
 			isa = PBXGroup;
 			children = (
+				AF55EEDD26ACFC1900327A02 /* prototype */,
+				AF55EEDA26ACF40C00327A02 /* factories */,
+				AF55EED726ACE88000327A02 /* builder */,
 				AF55DDBA26A2248B006CA576 /* solid */,
 			);
 			path = "swift-design-patterns";
@@ -80,6 +89,30 @@
 				AF55DDC326A49F66006CA576 /* DIP.swift */,
 			);
 			path = solid;
+			sourceTree = "<group>";
+		};
+		AF55EED726ACE88000327A02 /* builder */ = {
+			isa = PBXGroup;
+			children = (
+				AF55EED826ACF37100327A02 /* Builder.swift */,
+			);
+			path = builder;
+			sourceTree = "<group>";
+		};
+		AF55EEDA26ACF40C00327A02 /* factories */ = {
+			isa = PBXGroup;
+			children = (
+				AF55EEDB26ACFBF100327A02 /* Factory.swift */,
+			);
+			path = factories;
+			sourceTree = "<group>";
+		};
+		AF55EEDD26ACFC1900327A02 /* prototype */ = {
+			isa = PBXGroup;
+			children = (
+				AF55EEDE26AD03D100327A02 /* Prototype.swift */,
+			);
+			path = prototype;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,11 +173,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF55EEDF26AD03D100327A02 /* Prototype.swift in Sources */,
 				AF55DDC226A49DD0006CA576 /* ISP.swift in Sources */,
 				AF55DDC026A4357C006CA576 /* LSP.swift in Sources */,
 				AF55DDBE26A22A8E006CA576 /* OCP.swift in Sources */,
 				AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */,
 				AF55DDC426A49F66006CA576 /* DIP.swift in Sources */,
+				AF55EED926ACF37100327A02 /* Builder.swift in Sources */,
+				AF55EEDC26ACFBF100327A02 /* Factory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
