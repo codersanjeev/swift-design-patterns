@@ -15,6 +15,8 @@
 		AF55EED926ACF37100327A02 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EED826ACF37100327A02 /* Builder.swift */; };
 		AF55EEDC26ACFBF100327A02 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EEDB26ACFBF100327A02 /* Factory.swift */; };
 		AF55EEDF26AD03D100327A02 /* Prototype.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF55EEDE26AD03D100327A02 /* Prototype.swift */; };
+		AFED071426B670B700E0DE76 /* SingletonDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFED071326B670B700E0DE76 /* SingletonDatabase.swift */; };
+		AFED071726B6746200E0DE76 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFED071626B6746200E0DE76 /* Adapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +41,8 @@
 		AF55EED826ACF37100327A02 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		AF55EEDB26ACFBF100327A02 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		AF55EEDE26AD03D100327A02 /* Prototype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prototype.swift; sourceTree = "<group>"; };
+		AFED071326B670B700E0DE76 /* SingletonDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonDatabase.swift; sourceTree = "<group>"; };
+		AFED071626B6746200E0DE76 /* Adapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 		AF4A40DB269F100B00124CC3 /* swift-design-patterns */ = {
 			isa = PBXGroup;
 			children = (
+				AFED071526B6740200E0DE76 /* adapter */,
+				AFED071226B6703700E0DE76 /* singleton */,
 				AF55EEDD26ACFC1900327A02 /* prototype */,
 				AF55EEDA26ACF40C00327A02 /* factories */,
 				AF55EED726ACE88000327A02 /* builder */,
@@ -113,6 +119,22 @@
 				AF55EEDE26AD03D100327A02 /* Prototype.swift */,
 			);
 			path = prototype;
+			sourceTree = "<group>";
+		};
+		AFED071226B6703700E0DE76 /* singleton */ = {
+			isa = PBXGroup;
+			children = (
+				AFED071326B670B700E0DE76 /* SingletonDatabase.swift */,
+			);
+			path = singleton;
+			sourceTree = "<group>";
+		};
+		AFED071526B6740200E0DE76 /* adapter */ = {
+			isa = PBXGroup;
+			children = (
+				AFED071626B6746200E0DE76 /* Adapter.swift */,
+			);
+			path = adapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,9 +198,11 @@
 				AF55EEDF26AD03D100327A02 /* Prototype.swift in Sources */,
 				AF55DDC226A49DD0006CA576 /* ISP.swift in Sources */,
 				AF55DDC026A4357C006CA576 /* LSP.swift in Sources */,
+				AFED071726B6746200E0DE76 /* Adapter.swift in Sources */,
 				AF55DDBE26A22A8E006CA576 /* OCP.swift in Sources */,
 				AF55DDBC26A224A1006CA576 /* SRP.swift in Sources */,
 				AF55DDC426A49F66006CA576 /* DIP.swift in Sources */,
+				AFED071426B670B700E0DE76 /* SingletonDatabase.swift in Sources */,
 				AF55EED926ACF37100327A02 /* Builder.swift in Sources */,
 				AF55EEDC26ACFBF100327A02 /* Factory.swift in Sources */,
 			);
