@@ -1,7 +1,9 @@
 import Foundation
 
 class Point: CustomStringConvertible {
-	private var x, y: Double
+	
+	private var x: Double
+	private var y: Double
 	
 	private init(x: Double, y: Double) {
 		self.x = x

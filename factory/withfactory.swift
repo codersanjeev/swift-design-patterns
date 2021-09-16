@@ -1,6 +1,7 @@
 import Foundation
 
 class Point: CustomStringConvertible {
+	
 	var x, y: Double
 	
 	init(x: Double, y: Double) {

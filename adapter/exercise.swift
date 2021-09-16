@@ -1,8 +1,7 @@
 class Square {
 	var side = 0
 	
-	init(side: Int)
-	{
+	init(side: Int) {
 		self.side = side
 	}
 }

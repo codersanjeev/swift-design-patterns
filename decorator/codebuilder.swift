@@ -1,4 +1,5 @@
 class CodeBuilder: CustomStringConvertible {
+	
 	private var buffer = ""
 	
 	init() {}
